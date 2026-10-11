@@ -23,6 +23,7 @@ class MissionControl::Jobs::ApplicationController < MissionControl::Jobs.base_co
     end
 
     def set_current_locale(&block)
+      I18n.eager_load!
       @previous_config = I18n.config
       I18n.config = MissionControl::Jobs::I18nConfig.new
       I18n.with_locale(:en, &block)
